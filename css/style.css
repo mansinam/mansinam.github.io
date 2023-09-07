@@ -1075,7 +1075,7 @@ article {
 }
 #footer .social li {
   display: inline-block;
-  margin-right: 15px;
+  margin-right: 0px;
 }
 #footer .social li a {
   font-size: 22px;
