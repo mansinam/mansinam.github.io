@@ -245,19 +245,20 @@ a:hover {
   background: #f1f1f1;
 }
 #about .block {
-  padding: 20px 30px 0 30px;
+  padding: 12px 59px 0 59px;
 }
 #about .block h2 {
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 30px;
   text-transform: uppercase;
+  text-align: center;
 }
 #about .block p {
   color: #727272;
   font-size: 16px;
   line-height: 28px;
-  margin-bottom: 35px;
+  margin-bottom: 15px;
 }
 #about .block img {
   max-width: 100%;
