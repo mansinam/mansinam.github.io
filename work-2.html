@@ -98,12 +98,16 @@ Project Details Section
         <!-- Content Start -->
         <div class="work-single-content">
           <h3>Purposes:</h3>
-          <p>&nbsp;-&nbsp; Predict whether a customers' satisfaction with banking experience<br>
-            &nbsp;-&nbsp; Identify dissatisfied customers earlier<br>
-            &nbsp;-&nbsp; Take proactive steps to improve their happiness</p>
+          <ul style="list-style-type:disc">
+            <li>Predict whether a customers' satisfaction with banking experience</li>
+            <li>Identify dissatisfied customers earlier</li>
+            <li>Take proactive steps to improve their happiness</li>
+          </ul>
 
           <h3>Data Structure and Pre-processing:</h3>
-          <p>&nbsp;-&nbsp; Step 0: Import libraries</p>
+          <ul style="list-style-type:disc">
+            <li>Step 0: Import libraries</li>
+          </ul>
           <!-- Python Code --><blockquote><pre class="python-exec">
 <code>import pandas as pd    # data manipulation
 import numpy as np    # data manipulation
@@ -116,8 +120,10 @@ from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score</code></pre></blockquote>
 
-          <p>&nbsp;-&nbsp; Step 1: Reading data<br>
-            &nbsp;-&nbsp; 76020 and 75818 records in the training data and test data respectively, which contain both categorical and continuous data.</p>
+          <ul style="list-style-type:disc">
+            <li>Step 1: Reading data</li>
+            <li>76020 and 75818 records in the training data and test data respectively, which contain both categorical and continuous data.</li>
+          </ul>
           <!-- Python Code --><blockquote><pre class="python-exec">
 <code>data_folder = "C:/Users/Others/Projects/Bank Customer Satisfaction/Data/"
 train = pd.read_csv(data_folder + "train.csv")
@@ -126,8 +132,10 @@ sample = pd.read_csv(data_folder + "sample_submission.csv")
 print(train.shape)
 print(test.shape)</code></pre></blockquote>
 
-          <p>&nbsp;-&nbsp; Step 2: Checking data<br>
-            &nbsp;-&nbsp; No duplicate records and missing values, and fake data (eg. 999999) were removed. Also, all constant columns were dropped.</p>
+          <ul style="list-style-type:disc">
+            <li>Step 2: Checking data</li>
+            <li>No duplicate records and missing values, and fake data (eg. 999999) were removed. Also, all constant columns were dropped.</li>
+          </ul>  
           <!-- Python Code --><blockquote><pre class="python-exec">
 <code>dup_records = train[train.duplicated()]
 train = train.drop(dup_records.index, axis=0)    # drop duplicated records
@@ -147,23 +155,29 @@ train = train.drop(constant_fields, axis=1)    # drop column with one unique val
 test = test.drop(constant_fields, axis=1)</code></pre></blockquote>
 
           <h3>New Features and Train-test Splitting:</h3>
-          <p>&nbsp;-&nbsp; Step 3: Adding features<br>
-            &nbsp;-&nbsp; Added the sum of zeros feature, that is, the number of zero for each training and test sample.</p>
+          <ul style="list-style-type:disc">
+            <li>Step 3: Adding features</li>
+            <li>Added the sum of zeros feature, that is, the number of zero for each training and test sample.</li>
+          </ul>
           <!-- Python Code --><blockquote><pre class="python-exec">
 <code>temp_cols = [i for i in train.columns if not i in ['ID', 'TARGET']]
 train.insert(1, 'SumZeros', (train[temp_cols] == 0).astype(int).sum(axis=1))
 test.insert(1, 'SumZeros', (test[temp_cols] == 0).astype(int).sum(axis=1))</code></pre></blockquote>
 
-          <p>&nbsp;-&nbsp; Step 4: Train-test splitting<br>
-            &nbsp;-&nbsp; The splitting ratio is 75% of data for training and 25% for testing.</p>
+          <ul style="list-style-type:disc">
+            <li>Step 4: Train-test splitting</li>
+            <li>The splitting ratio is 75% of data for training and 25% for testing.</li>
+          </ul>
           <!-- Python Code --><blockquote><pre class="python-exec">
 <code>x = train.drop(['ID', 'TARGET'], axis=1)
 y = train['TARGET']
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=1)</code></pre></blockquote>
 
           <h3>Data Normalization and Data Resampling:</h3>
-          <p>&nbsp;-&nbsp; Step 5: Normalizing data<br>
-            &nbsp;-&nbsp; Define categorical data and normalize continuous data. The purposes are to transform features to a similar scale and to improve training performance.</p>
+          <ul style="list-style-type:disc">
+            <li>Step 5: Normalizing data</li>
+            <li>Define categorical data and normalize continuous data. The purposes are to transform features to a similar scale and to improve training performance.</li>
+          </ul>
           <!-- Python Code --><blockquote><pre class="python-exec">
 <code>cat_fields = []
 for i in x_train.select_dtypes(np.int64).columns:
@@ -176,8 +190,10 @@ normalizer = MinMaxScaler()
 x_train[temp_cols] = normalizer.fit_transform(x_train[temp_cols])    # normalize the value (value=0-1)
 x_train_describe = x_train.describe()</code></pre></blockquote>
 
-          <p>&nbsp;-&nbsp; Step 6: Resampling data for imbalanced dataset<br>
-            &nbsp;-&nbsp; Undersampling may cause algorithm to skew toward the majority, so certain values from majority class were randomly removed to reduce risk.</p>
+          <ul style="list-style-type:disc">
+            <li>Step 6: Resampling data for imbalanced dataset</li>
+            <li>Undersampling may cause algorithm to skew toward the majority, so certain values from majority class were randomly removed to reduce risk.</li>
+          </ul>
           <!-- Python Code --><blockquote><pre class="python-exec">
 <code>y_train_cnt = sns.countplot(x=y_train)    # training set imbalanced
 y_train_cnt.set_title('Distribution of [TARGET] before Resampling')
@@ -191,8 +207,10 @@ y_train_cnt_resp.set_title('Distribution of [TARGET] after Resampling')
 y_train_cnt_resp.bar_label(y_train_cnt_resp.containers[0])</code></pre></blockquote>
 
           <h3>Building Models and Prediction:</h3>
-          <p>&nbsp;-&nbsp; Step 7: Building models and accuracy<br>
-            &nbsp;-&nbsp; Two model were built, gradient boosting tree which is for classification problems, and another is random forest classifier.</p>
+          <ul style="list-style-type:disc">
+            <li>Step 7: Building models and accuracy</li>
+            <li>Two model were built, gradient boosting tree which is for classification problems, and another is random forest classifier.</li>
+          </ul>
           <!-- Python Code --><blockquote><pre class="python-exec">
 <code>def train_predict_gradient_boosting(x_train2, y_train2, x_test2):
     model = XGBClassifier()
@@ -214,8 +232,10 @@ def train_predict_random_forest(x_train2, y_train2, x_test2):
 train_predict_gradient_boosting(x_train, y_train, x_test)
 train_predict_random_forest(x_train, y_train, x_test)</code></pre></blockquote>
 
-          <p>&nbsp;-&nbsp; Step 8: Prediction on test data<br>
-            &nbsp;-&nbsp; XGBoost model has a higher accuracy and thus used for prediction.</p>
+          <ul style="list-style-type:disc">
+            <li>Step 8: Prediction on test data</li>
+            <li>XGBoost model has a higher accuracy and thus used for prediction.</li>
+          </ul>
           <!-- Python Code --><blockquote><pre class="python-exec">
 <code>test_id = test['ID']
 test = test.drop('ID', axis=1)
@@ -249,8 +269,8 @@ Contact Section
       <div class="row">
           <div class="col-md-12">
               <div class="block">
-                  <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">How is it?</h1>
-                  <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">Leave me a message by email or connect with me on LinkedIn!</p>
+                  <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">Contact Me</h1>
+                  <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">Feel free to contact me via email or LinkedIn.</p>
                   <a href="mailto:mannamnam@gmail.com" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms" target="_blank">Email Me</a>  &nbsp;
                   <a href="https://www.linkedin.com/in/mansinam" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms" target="_blank">LinkedIn</a>
               </div>

@@ -29,10 +29,12 @@ body {
 }
 
 ul {
-  padding-left: 0;
-}
-ul li {
-  list-style: none;
+  padding-left: 25px;
+  font-family: "Roboto", sans-serif;
+  line-height: 22px;
+  font-size: 16px;
+  font-weight: 300;
+  margin-bottom: 30px;
 }
 
 a:hover {
@@ -96,7 +98,7 @@ a:hover {
 .global-page-header {
   background-attachment: fixed;
   background-size: cover;
-  padding: 80px 0 80px 0;
+  padding: 72px 0 72px 0;
   position: relative;
   background: #6495ED;
   color: #fff;
@@ -186,8 +188,8 @@ a:hover {
   background: #414141;
   border: none;
   color: #fff;
-  padding: 20px 35px;
-  margin-top: 30px;
+  padding: 20px 34px;
+  margin-top: 5px;
   font-size: 16px;
   font-size: 13px;
   line-height: 1em;
@@ -200,7 +202,7 @@ a:hover {
   background: #6495ED;
   background-size: cover;
   background-attachment: fixed;
-  padding: 80px 0;
+  padding: 70px 0;
   text-align: center;
   position: relative;
   color: #fff;
@@ -224,8 +226,8 @@ a:hover {
   background: #fff;
   border: 2px solid #fff;
   color: #6495ED;
-  padding: 15px 34px;
-  margin-top: 20px;
+  padding: 15px 27px;
+  margin-top: 17px;
   font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
