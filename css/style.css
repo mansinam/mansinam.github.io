@@ -28,7 +28,13 @@ body {
   background: #ffffff;
 }
 
-ul {
+.ul1 {
+  padding-left: 0;
+}
+.ul1 li {
+  list-style: none;
+}
+.ul2 {
   padding-left: 25px;
   font-family: "Roboto", sans-serif;
   line-height: 22px;
@@ -493,13 +499,13 @@ figure figcaption p {
   color: #6495ED;
 }
 
-ul.social-icons {
+.ul1.social-icons {
   height: auto;
   overflow: hidden;
   list-style: none !important;
   margin-bottom: 10px;
 }
-ul.social-icons li {
+.ul1.social-icons li {
   float: none;
   display: inline-block;
   height: 36px;

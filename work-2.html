@@ -98,14 +98,14 @@ Project Details Section
         <!-- Content Start -->
         <div class="work-single-content">
           <h3>Purposes:</h3>
-          <ul style="list-style-type:disc">
+          <ul class="ul2" style="list-style-type:disc">
             <li>Predict whether a customers' satisfaction with banking experience</li>
             <li>Identify dissatisfied customers earlier</li>
             <li>Take proactive steps to improve their happiness</li>
           </ul>
 
           <h3>Data Structure and Pre-processing:</h3>
-          <ul style="list-style-type:disc">
+          <ul class="ul2" style="list-style-type:disc">
             <li>Step 0: Import libraries</li>
           </ul>
           <!-- Python Code --><blockquote><pre class="python-exec">
@@ -120,7 +120,7 @@ from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score</code></pre></blockquote>
 
-          <ul style="list-style-type:disc">
+          <ul class="ul2" style="list-style-type:disc">
             <li>Step 1: Reading data</li>
             <li>76020 and 75818 records in the training data and test data respectively, which contain both categorical and continuous data.</li>
           </ul>
@@ -132,7 +132,7 @@ sample = pd.read_csv(data_folder + "sample_submission.csv")
 print(train.shape)
 print(test.shape)</code></pre></blockquote>
 
-          <ul style="list-style-type:disc">
+          <ul class="ul2" style="list-style-type:disc">
             <li>Step 2: Checking data</li>
             <li>No duplicate records and missing values, and fake data (eg. 999999) were removed. Also, all constant columns were dropped.</li>
           </ul>  
@@ -155,7 +155,7 @@ train = train.drop(constant_fields, axis=1)    # drop column with one unique val
 test = test.drop(constant_fields, axis=1)</code></pre></blockquote>
 
           <h3>New Features and Train-test Splitting:</h3>
-          <ul style="list-style-type:disc">
+          <ul class="ul2" style="list-style-type:disc">
             <li>Step 3: Adding features</li>
             <li>Added the sum of zeros feature, that is, the number of zero for each training and test sample.</li>
           </ul>
@@ -164,7 +164,7 @@ test = test.drop(constant_fields, axis=1)</code></pre></blockquote>
 train.insert(1, 'SumZeros', (train[temp_cols] == 0).astype(int).sum(axis=1))
 test.insert(1, 'SumZeros', (test[temp_cols] == 0).astype(int).sum(axis=1))</code></pre></blockquote>
 
-          <ul style="list-style-type:disc">
+          <ul class="ul2" style="list-style-type:disc">
             <li>Step 4: Train-test splitting</li>
             <li>The splitting ratio is 75% of data for training and 25% for testing.</li>
           </ul>
@@ -174,7 +174,7 @@ y = train['TARGET']
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=1)</code></pre></blockquote>
 
           <h3>Data Normalization and Data Resampling:</h3>
-          <ul style="list-style-type:disc">
+          <ul class="ul2" style="list-style-type:disc">
             <li>Step 5: Normalizing data</li>
             <li>Define categorical data and normalize continuous data. The purposes are to transform features to a similar scale and to improve training performance.</li>
           </ul>
@@ -190,7 +190,7 @@ normalizer = MinMaxScaler()
 x_train[temp_cols] = normalizer.fit_transform(x_train[temp_cols])    # normalize the value (value=0-1)
 x_train_describe = x_train.describe()</code></pre></blockquote>
 
-          <ul style="list-style-type:disc">
+          <ul class="ul2" style="list-style-type:disc">
             <li>Step 6: Resampling data for imbalanced dataset</li>
             <li>Undersampling may cause algorithm to skew toward the majority, so certain values from majority class were randomly removed to reduce risk.</li>
           </ul>
@@ -207,7 +207,7 @@ y_train_cnt_resp.set_title('Distribution of [TARGET] after Resampling')
 y_train_cnt_resp.bar_label(y_train_cnt_resp.containers[0])</code></pre></blockquote>
 
           <h3>Building Models and Prediction:</h3>
-          <ul style="list-style-type:disc">
+          <ul class="ul2" style="list-style-type:disc">
             <li>Step 7: Building models and accuracy</li>
             <li>Two model were built, gradient boosting tree which is for classification problems, and another is random forest classifier.</li>
           </ul>
@@ -232,7 +232,7 @@ def train_predict_random_forest(x_train2, y_train2, x_test2):
 train_predict_gradient_boosting(x_train, y_train, x_test)
 train_predict_random_forest(x_train, y_train, x_test)</code></pre></blockquote>
 
-          <ul style="list-style-type:disc">
+          <ul class="ul2" style="list-style-type:disc">
             <li>Step 8: Prediction on test data</li>
             <li>XGBoost model has a higher accuracy and thus used for prediction.</li>
           </ul>
@@ -290,7 +290,7 @@ Footer Section
               <p class="copyright">© 2023 Man Si Nam Valerie</p>
           </div>
           <div class="col-md-4 col-12">
-              <ul class="social text-center text-md-right text-lg-right">
+              <ul class="ul1 social text-center text-md-right text-lg-right">
                   <li>
                       <a href="mailto:mannamnam@gmail.com" class="Email" target="_blank">
                           <i class="ion-android-mail"></i> &nbsp;
